@@ -1,0 +1,14 @@
+type Feedback ={ // making it optional because they might be undefined
+    name?:string,
+    email?: string,
+    message?: string
+}
+
+export async function POST(request: Request){
+    const data: Feedback = await request.json()
+    console.log("data", data)
+
+    const {name, email, message} = data
+
+    return Response.json({name, email, message})
+}
