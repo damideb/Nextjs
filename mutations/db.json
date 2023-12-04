@@ -1,0 +1,28 @@
+{
+  "todos": [
+    {
+      "userId": 1,
+      "title": "Wave hello! 👋",
+      "completed": false,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "title": "write code",
+      "id": 2,
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "title": "watch tv",
+      "id": 3,
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "title": "nawa",
+      "id": 4,
+      "completed": false
+    }
+  ]
+}
