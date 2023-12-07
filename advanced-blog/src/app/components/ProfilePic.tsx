@@ -1,6 +1,7 @@
 import Image from "next/image"
 
 export default function ProfilePic() {
+  
   return (
     <section className="w-full mx-auto">
         <Image 
