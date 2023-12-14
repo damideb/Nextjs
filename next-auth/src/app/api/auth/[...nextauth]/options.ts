@@ -1,5 +1,6 @@
 import type {NextAuthOptions} from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
+import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 export const options:NextAuthOptions ={
@@ -9,8 +10,12 @@ export const options:NextAuthOptions ={
             clientSecret: process.env.GITHUB_SECRET as string,
 
         }),
+        GoogleProvider({
+            clientId:process.env.GOOGLE_ID as string,
+            clientSecret: process.env.GOOGLE_SECRET as string,
+        }),
         CredentialsProvider({
-            name: 'Credentials',
+            name: 'name and password',
             credentials:{
                 username:{
                     label: 'username',
@@ -35,4 +40,7 @@ export const options:NextAuthOptions ={
             }
         })
     ],
+    pages: {
+        signOut: '/auth/signout'
+    }
 }
