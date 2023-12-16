@@ -2,7 +2,8 @@ import type {NextAuthOptions} from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
-
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth} from '@/app/firebase'
 export const options:NextAuthOptions ={
     providers:[
         GithubProvider({
@@ -28,15 +29,24 @@ export const options:NextAuthOptions ={
                     placeholder: 'type your password'
                 }
                 },
-                async authorize(credentials){
-                    const user = {id:'42', name: 'Dami', password:'nextauth'}
+                async authorize(credentials): Promise<any>{
+                    // const user = {id:'42', name: 'Dami', password:'nextauth'}
                     
-                    if (credentials?.username===user.name && credentials?.password===user.password){
-                        return user
-                    }
-                    else{
-                        return null
-                    }
+                    // if (credentials?.username===user.name && credentials?.password===user.password){
+                    //     return user
+                    // }
+                    // else{
+                    //     return null
+                    // }
+
+                       return await signInWithEmailAndPassword(auth, (credentials as any).email, (credentials as any).password || "")
+                    .then(userCredential=>{
+                        if(userCredential.user){
+                            return userCredential.user
+                        }
+                        return null;
+                    })
+                    .catch(error=> {console.log(error)})
             }
         })
     ],
