@@ -16,18 +16,18 @@ export const options:NextAuthOptions ={
             clientSecret: process.env.GOOGLE_SECRET as string,
         }),
         CredentialsProvider({
-            name: 'name and password',
+            // name: 'name and password',
             credentials:{
-                username:{
-                    label: 'username',
-                    type: 'text',
-                    placeholder: 'eg: emily'
-                },
-                password:{
-                    label: "Password", 
-                    type: "password",
-                    placeholder: 'type your password'
-                }
+                // username:{
+                //     label: 'username',
+                //     type: 'text',
+                //     placeholder: 'eg: emily'
+                // },
+                // password:{
+                //     label: "Password", 
+                //     type: "password",
+                //     placeholder: 'type your password'
+                // }
                 },
                 async authorize(credentials): Promise<any>{
                     // const user = {id:'42', name: 'Dami', password:'nextauth'}
@@ -39,7 +39,7 @@ export const options:NextAuthOptions ={
                     //     return null
                     // }
 
-                       return await signInWithEmailAndPassword(auth, (credentials as any).email, (credentials as any).password || "")
+                       return await signInWithEmailAndPassword(auth, (credentials as any).useremail, (credentials as any).userPassword || "")
                     .then(userCredential=>{
                         if(userCredential.user){
                             return userCredential.user
@@ -51,6 +51,6 @@ export const options:NextAuthOptions ={
         })
     ],
     pages: {
-        signOut: '/auth/signout'
+        signIn: '/auth/signin'
     }
 }
